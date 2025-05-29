@@ -30,7 +30,9 @@ public class Block {
     }
     
     public void mineBlock(int difficulty) {
+        // target is a 'difficulty' number of zeros that are a string
         String target = new String(new char[difficulty]).replace('\0', '0');
+        // we want to make sure that the hash begins with 'difficulty' number of zeros
         while (!hash.substring(0, difficulty).equals(target)) {
             ++nonce;
             hash = calculateHash();
