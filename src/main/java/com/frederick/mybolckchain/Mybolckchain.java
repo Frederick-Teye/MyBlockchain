@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Mybolckchain {
 
     public static ArrayList<Block> blockchain = new ArrayList<>();
+    public static int difficulty = 6;
 
     public static void main(String[] args) {
         blockchain.add(new Block("First block in blockchain", "0"));
