@@ -19,19 +19,19 @@ public class Mybolckchain {
 
         blockchain.add(new Block("Second block in blockchain",
                 blockchain.get(blockchain.size() - 1).hash));
-        System.out.println("Trying to Mine block 2...");
+        System.out.println("\nTrying to Mine block 2...");
         blockchain.get(1).mineBlock(difficulty);
 
         blockchain.add(new Block("Third block",
                 blockchain.get(blockchain.size() - 1).hash));
-        System.out.println("Trying to Mine block 3...\n");
+        System.out.println("\nTrying to Mine block 3...");
         blockchain.get(2).mineBlock(difficulty);
         
-        System.out.println("Is Blockchain valid? " + isChainValid());
+        System.out.println("\nIs Blockchain valid? \nAnswer: " + isChainValid());
 
         String blockchainJson = new GsonBuilder().setPrettyPrinting()
                 .create().toJson(blockchain);
-        System.out.println("\nThe block chain: ");
+        System.out.println("\n\nThe block chain: ");
         System.out.println(blockchainJson);
 
     }
@@ -39,6 +39,7 @@ public class Mybolckchain {
     public static boolean isChainValid() {
         Block currentBlock;
         Block previousBlock;
+        String hashTarget = new String(new char[difficulty]).replace('\0', '0');
         
         for (int i = 1; i < blockchain.size(); i++) {
             currentBlock = blockchain.get(i);
@@ -55,6 +56,11 @@ public class Mybolckchain {
                 return false;
             } 
             
+            // check if has hasn't been solved
+            if (!currentBlock.hash.substring(0, difficulty).equals(hashTarget)) {
+                System.out.println("This block hasn't been mined");
+                return false;
+            }
         }
         
         return true;
