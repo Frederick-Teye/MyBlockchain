@@ -14,15 +14,24 @@ public class Mybolckchain {
 
     public static void main(String[] args) {
         blockchain.add(new Block("First block in blockchain", "0"));
+        System.out.println("Trying to Mine block 1...");
+        blockchain.get(0).mineBlock(difficulty);
 
         blockchain.add(new Block("Second block in blockchain",
                 blockchain.get(blockchain.size() - 1).hash));
+        System.out.println("Trying to Mine block 2...");
+        blockchain.get(1).mineBlock(difficulty);
 
         blockchain.add(new Block("Third block",
                 blockchain.get(blockchain.size() - 1).hash));
+        System.out.println("Trying to Mine block 3...\n");
+        blockchain.get(2).mineBlock(difficulty);
+        
+        System.out.println("Is Blockchain valid? " + isChainValid());
 
         String blockchainJson = new GsonBuilder().setPrettyPrinting()
                 .create().toJson(blockchain);
+        System.out.println("\nThe block chain: ");
         System.out.println(blockchainJson);
 
     }
