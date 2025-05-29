@@ -7,6 +7,7 @@ import java.util.Date;
  * @author frederick
  */
 public class Block {
+
     public String hash;
     public String previousHash;
     public String data;
@@ -19,16 +20,19 @@ public class Block {
         this.timeStamp = new Date().getTime();
         this.hash = calculateHash();
     }
-    
+
+
     public String calculateHash() {
         String calculatedHash = StringUtil.applySha256(
                 previousHash
                 + Long.toString(timeStamp)
+                + Integer.toString(nonce)
                 + data
         );
         return calculatedHash;
     }
-    
+
+
     public void mineBlock(int difficulty) {
         // target is a 'difficulty' number of zeros that are a string
         String target = new String(new char[difficulty]).replace('\0', '0');
@@ -39,5 +43,6 @@ public class Block {
         }
         System.out.println("Block Mined!!! : " + hash);
     }
+
 
 }
