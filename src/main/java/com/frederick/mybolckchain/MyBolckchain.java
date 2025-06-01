@@ -48,9 +48,9 @@ public class MyBolckchain {
         Block block1 = new Block(genesis.hash);
         System.out.println("\nWallteA's balance is: " + walletA.getBalance());
         System.out.println("WalletA is attempting to send funds (40) to WalletB...");
-        block1.addTransaction(walletA.sendFunds(walletB.publicKey, 1000f));
+        block1.addTransaction(walletA.sendFunds(walletB.publicKey, 40f));
         addBlock(block1);
-        System.out.println("\nWallet's balance is: " + walletA.getBalance());
+        System.out.println("\nWalletA's balance is: " + walletA.getBalance());
         System.out.println("WalletB's balace is: " + walletB.getBalance());
         
         Block block2 = new Block(block1.hash);
@@ -149,7 +149,7 @@ public class MyBolckchain {
             }
         }
         
-        System.out.println("Blockchain is valid");
+        System.out.println("\nBlockchain is valid");
         return true;
     }
     
