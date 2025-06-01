@@ -127,4 +127,15 @@ public class Transaction {
     }
 
 
+    private String calculateHash() {
+        sequence++;
+        return StringUtil.applySha256(
+                StringUtil.getStringFromKey(sender)
+                + StringUtil.getStringFromKey(reciepient)
+                + Float.toString(value)
+                + sequence
+        );
+    }
+
+
 }
