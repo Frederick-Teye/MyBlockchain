@@ -29,18 +29,6 @@ public class Transaction {
     }
 
 
-    // This calculates the transaction hash which will be used as its ID.
-    private String caluclateHash() {
-        ++sequence; // Increase sequese to avoid same hash for two transactions
-        return StringUtil.applySha256(
-                StringUtil.getStringFromKey(sender)
-                + StringUtil.getStringFromKey(reciepient)
-                + Float.toString(value)
-                + sequence
-        );
-    }
-
-
     // Sings all the data we don't wish to be tampered with.
     public void generateSignature(PrivateKey privateKey) {
         String data = StringUtil.getStringFromKey(sender)
@@ -63,7 +51,7 @@ public class Transaction {
 
     // Returns true if new transaction could be created
     public boolean processTransaction() {
-        if (verifySignature() == false) {
+        if (!verifySignature()) {
             System.out.println("Transaction signature failed to verify");
             return false;
         }
@@ -84,7 +72,7 @@ public class Transaction {
         transactionId = calculateHash();
         // Send value to reciepient
         outputs.add(new TransactionOutput(this.reciepient, value, transactionId));
-        // Send the left over change back to sender
+        // Send the leftover change back to sender
         outputs.add(new TransactionOutput(this.sender, leftOver, transactionId));
 
         // Add outputs to Unspent list
@@ -126,7 +114,7 @@ public class Transaction {
         return total;
     }
 
-
+    // This calculates the transaction hash which will be used as its ID.
     private String calculateHash() {
         sequence++;
         return StringUtil.applySha256(

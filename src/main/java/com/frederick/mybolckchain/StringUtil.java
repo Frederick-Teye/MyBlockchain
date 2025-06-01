@@ -68,7 +68,7 @@ public class StringUtil {
     }
 
 
-    // Tacks in array of transactions and returns a merkle root.
+    // Takes in array of transactions and returns a merkle root.
     public static String getMerkleRoot(ArrayList<Transaction> transactions) {
         int count = transactions.size();
         ArrayList<String> previousTreeLayer = new ArrayList<>();
