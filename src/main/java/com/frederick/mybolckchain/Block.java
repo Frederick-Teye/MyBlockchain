@@ -16,7 +16,7 @@ public class Block {
     public String merkleRoot;
     public ArrayList<Transaction> transactions = new ArrayList<>();
 
-    public Block(String data, String previousHash) {
+    public Block(String previousHash) {
         this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();
         this.hash = calculateHash();
