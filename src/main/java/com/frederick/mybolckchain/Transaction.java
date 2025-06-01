@@ -70,11 +70,11 @@ public class Transaction {
 
         // Gather transaction inputs (Make sure they are unspent)
         for (TransactionInput i : inputs) {
-            i.UTXO = Mybolckchain.UTXOs.get(i.transactionOutputId);
+            i.UTXO = MyBolckchain.UTXOs.get(i.transactionOutputId);
         }
 
         // Check if transaction is valid
-        if (getInputsValue() < Mybolckchain.minimumTransaction) {
+        if (getInputsValue() < MyBolckchain.minimumTransaction) {
             System.out.println("#Transaction Inputs to small: " + getInputsValue());
             return false;
         }
@@ -89,7 +89,7 @@ public class Transaction {
 
         // Add outputs to Unspent list
         for (TransactionOutput o : outputs) {
-            Mybolckchain.UTXOs.put(o.id, o);
+            MyBolckchain.UTXOs.put(o.id, o);
         }
 
         // Remove transaction inputs from UTXO lists as spent
@@ -97,7 +97,7 @@ public class Transaction {
             if (i.UTXO == null) {
                 continue;
             }
-            Mybolckchain.UTXOs.remove(i.UTXO.id);
+            MyBolckchain.UTXOs.remove(i.UTXO.id);
         }
 
         return true;

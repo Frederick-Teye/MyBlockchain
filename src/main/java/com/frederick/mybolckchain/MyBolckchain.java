@@ -8,7 +8,7 @@ import java.util.HashMap;
  *
  * @author frederick
  */
-public class Mybolckchain {
+public class MyBolckchain {
     
     public static ArrayList<Block> blockchain = new ArrayList<>();
     public static int difficulty = 6;
