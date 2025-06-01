@@ -83,7 +83,7 @@ public class Transaction {
         float leftOver = getInputsValue() - value;  // Get value of inputs then the left over change
         transactionId = calculateHash();
         // Send value to reciepient
-        outputs.add(new TransactinOutput(this.reciepient, value, transactionId));
+        outputs.add(new TransactionOutput(this.reciepient, value, transactionId));
         // Send the left over change back to sender
         outputs.add(new TransactionOutput(this.sender, leftOver, transactionId));
 
